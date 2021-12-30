@@ -1,0 +1,100 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <script src="{% static 'js/functions.js' %}"></script>
+</head>
+<body>
+    <header>
+        <div class="content">
+            <div class="title">
+                <a href="http://127.0.0.1:8000/"><h1>Home</h1></a>
+                {% if not user.is_anonymous %}
+                    <a href="http://127.0.0.1:8000/api/"><h1>Api</h1></a>
+                    <a href="http://127.0.0.1:8000/admin/"><h1>Admin</h1></a>
+                {% endif %}
+            </div>
+
+            {% if user.is_anonymous %}
+                <div class="button-login">
+                    <button onclick="doLogin()">Login</button>
+                </div>
+            {% else %}
+                <div class="button-logout">
+                    <button onclick="doLogout()">Logout</button>
+                </div>
+            {% endif %}
+        </div>
+    </header>
+
+    <div class="content-add-movie">
+        <modal id="content-add-movie">
+            <div class="content-form">
+                <div class="left-bar"></div>
+                <form action="POST" class="content-data">
+                    {% csrf_token %}
+                    <h3>Informações</h3>
+                    <input type="text" name="name" id="movieName" placeholder="Nome do filme..." required>
+                    <input type="date" name="date" id="movieDate" placeholder="Data de lançamento..." required>
+                    <textarea type="text" name="description" id="movieDescription" cols="30" rows="5" maxlength="300" placeholder="Descrição..." required></textarea>
+                    <div class="content-buttons">
+                        {% if user.is_anonymous %} 
+                            <input type="button" name="send" id="addMovie" value="Adicionar" onclick="createMovie()">
+                        {% else %}
+                            <input type="button" name="send" id="addMovie" value="Adicionar" onclick="createMovie(false)">
+                        {% endif %}
+                        <button type="button" name="cancel" class="cancel-add-movie" onclick="closeForm('.content-add-movie')">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+        </modal>
+    </div>
+
+    <div class="content-edit-movie">
+        <modal id="content-edit-movie">
+        </modal>
+    </div>
+
+    <div class="content-delete-movie">
+        <modal id="content-delete-movie">
+        </modal>
+    </div>
+
+    <div class="content-more-info">
+        <modal id="content-more-info">
+        </modal>
+    </div>
+
+
+
+
+    <div class="app">
+        <div class="content">
+            {% block content %}
+            
+            {% endblock %}
+        </div>
+    </div>
+
+    <footer class="footer-bar">
+        <div class="contact">
+            <h3>Contato:</h3>
+            <h4>E-mail: weliston2012@gmail.com</h4>
+            <h4>Fone: (53) 99999-2129</h4>
+        </div>
+        <div class="socials">
+            <h3>Redes Sociais:</h3>
+            <h4>Linkedin: <a href="https://www.linkedin.com/in/weliston-belles-472038214/">clique aqui.</a></h4>
+            <h4>Github: <a href="http://www.github.com/welistonbelles/">clique aqui.</a></h4>
+        </div>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+            <div class="content-title">
+                <h2>Filmes recomendados.</h2>
+            </div>
+            <div class="content-buttons">
+                {% if not user.is_anonymous %}
+                    <button class="add-movie" onclick="addMovie()">
+                        Adicionar Filme
+                    </button>
+                {% endif %}
+            </div>
+            <div class="content-tables">
+                <table>
+                    <thead >
+                        <th>Filme</th>
+                        <th>Ano</th>
+                        <th>Descrição</th>
+                        <th class="content-th-buttons"></th>
+                    </thead>
+                    <tbody id="movies">
+                        {% if user.is_anonymous %}
+                            <script>
+                                requestMovies();
+                            </script>
+                        {% else %}
+                            <script>
+                                requestMovies(false);
+                            </script>
+                        {% endif %}
+                    </tbody>
+                </table>
+            </div>
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="api">
+        <h1>Routes</h1>
+        <table>
+            <thead>
+                <th>Method</th>
+                <th>Route</th>
+                <th>Description</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>GET</td>
+                    <td>/api/movies/</td>
+                    <td>Retorna um json contendo informações de todos os filmes registrados.</td>
+                </tr>
+                <tr>
+                    <td>GET</td>
+                    <td>/api/movies/{id}</td>
+                    <td>Retorna um json contendo informações sobre o filme solicitado.</td>
+                </tr>
+                <tr>
+                    <td>POST</td>
+                    <td>/api/movies/</td>
+                    <td>Envia um novo filme para cadastro.</td>
+                </tr>
+                <tr>
+                    <td>POST</td>
+                    <td>/api/movies/</td>
+                    <td>Envia um novo filme para cadastro.</td>
+                </tr>
+                <tr>
+                    <td>PUT</td>
+                    <td>/api/movies/{id}</td>
+                    <td>Atualiza as informações sobre o filme informado.</td>
+                </tr>
+                <tr>
+                    <td>DELETE</td>
+                    <td>/api/movies/{id}</td>
+                    <td>Deleta do sistema o filme informado.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
